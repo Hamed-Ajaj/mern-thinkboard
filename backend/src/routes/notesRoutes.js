@@ -2,6 +2,7 @@ import express from "express";
 import {
   createNote,
   deleteNote,
+  getNoteById,
   getNotes,
   updateNote,
 } from "../controllers/notesController.js";
@@ -9,6 +10,8 @@ import {
 const router = express.Router();
 
 router.get("/", getNotes);
+
+router.get("/:id", getNoteById);
 
 router.post("/", createNote);
 

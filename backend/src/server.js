@@ -16,7 +16,7 @@ app.use(
   }),
 );
 app.use(express.json());
-app.use(rateLimiter);
+// app.use(rateLimiter);
 app.use("/api/notes", notesRoutes);
 app.listen(process.env.PORT || 5001, () => {
   console.log("Server running on PORT:", process.env.PORT);
