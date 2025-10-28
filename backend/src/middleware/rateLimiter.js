@@ -5,11 +5,11 @@ const rateLimiter = async (req, res, next) => {
     const { success } = await ratelimit.limit("my-rate-limit");
 
     if (!success) {
+      console.log("you've been rate limited");
       return res.status(429).json({
         message: "Too many requests, please try again later",
       });
     }
-    console.log("you've been rate limited");
 
     next();
   } catch (error) {
