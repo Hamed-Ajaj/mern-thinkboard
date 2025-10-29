@@ -18,7 +18,10 @@ const Navbar = () => {
                   <PlusIcon className="size-5" />
                   <span>New Note</span>
                 </Link>
-                <button onClick={() => signOut()} className="btn btn-link">
+                <button
+                  onClick={async () => await signOut()}
+                  className="btn btn-link"
+                >
                   Logout
                 </button>
               </div>
