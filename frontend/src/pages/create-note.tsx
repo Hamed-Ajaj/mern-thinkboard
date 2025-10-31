@@ -1,5 +1,5 @@
 import { ArrowLeftIcon } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useForm } from "@tanstack/react-form";
@@ -56,8 +56,13 @@ const CreateNotePage = () => {
         setLoading(false);
         navigate("/");
       } catch (error) {
-        console.log("error:", error);
-        toast.error("Failed To create Note!");
+        if (error.status === 401) {
+          toast.error("You need be to be logged in!");
+        } else if (error.status === 429) {
+          toast.error("To many requests");
+        } else {
+          toast.error("Failed To create Note!");
+        }
         setLoading(false);
       } finally {
         setLoading(false);
@@ -119,6 +124,7 @@ const CreateNotePage = () => {
                     children={(field) => {
                       const isInvalid =
                         field.state.meta.isTouched && !field.state.meta.isValid;
+
                       return (
                         <Field data-invalid={isInvalid}>
                           <FieldLabel htmlFor={field.name}>
@@ -170,40 +176,6 @@ const CreateNotePage = () => {
                     </Button>
                   </Field>
                 </div>
-                {/*<div className="form-control flex flex-col w-full mb-4 gap-2">
-                  <label className="label">
-                    <span className="label-text">Title</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Note Title"
-                    className="input input-bordered w-full"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-control flex flex-col w-full mb-4 gap-2">
-                  <label className="label">
-                    <span className="label-text">Content</span>
-                  </label>
-                  <textarea
-                    placeholder="Write your note here..."
-                    className="textarea textarea-bordered h-32 w-full p-5"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                  />
-                </div>
-
-                <div className="card-actions justify-end mt-2">
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    disabled={loading}
-                  >
-                    {loading ? "Creating..." : "Create Note"}
-                  </button>
-                </div>*/}
               </form>
             </div>
           </div>
