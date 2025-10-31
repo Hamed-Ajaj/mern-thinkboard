@@ -1,4 +1,4 @@
 import { createAuthClient } from "better-auth/react";
 export const { signIn, signUp, useSession, signOut } = createAuthClient({
-  baseURL: "http://localhost:5001",
+  baseURL: "https://mern-thinkboard-9qvy.onrender.com",
 });
