@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 
-//1- create schema
-// 2- model based on this schema
-
 const noteSchema = new mongoose.Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

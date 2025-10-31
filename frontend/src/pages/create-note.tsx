@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 const CreateNotePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
   const formSchema = z.object({
     title: z
       .string()
